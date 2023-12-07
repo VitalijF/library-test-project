@@ -1,0 +1,39 @@
+plugins {
+    id 'base'
+}
+
+group = 'com.vitaliif.library'
+
+def javaVersion = JavaVersion.VERSION_21.getMajorVersion().toInteger()
+
+
+allprojects {
+
+    pluginManager.withPlugin("org.gradle.java") { plugin ->
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(javaVersion)
+                vendor = JvmVendorSpec.matching("Eclipse Adoptium")
+            }
+        }
+        test {
+            useJUnitPlatform()
+        }
+    }
+
+    pluginManager.withPlugin("java-library") { plugin ->
+        dependencies {
+
+            // Use Gradle`s platform mechanism to handle SpringBoot BOM instead of dependencyManagement plugin
+            implementation platform('org.springframework.boot:spring-boot-dependencies:3.1.4')
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.release.set(javaVersion)
+    }
+}

@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  postgres:
+    build: ./docker-compose/postgres
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - APP_DB_USER=test_db_user
+      - APP_DB_PASS=testpass
+      - APP_DB_NAME=library
+    ports:
+      - 54322:5432

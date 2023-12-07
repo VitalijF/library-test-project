@@ -1,0 +1,20 @@
+server:
+  port: 8089
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54322/library
+    username: test_db_user
+    password: testpass
+    hikari:
+      auto-commit: false
+      connection-timeout: 30000
+      keepalive-time: 60000
+      maximum-pool-size: 10
+  jpa:
+    properties:
+      hibernate:
+        #show_sql: true
+        #format_sql: true
+        jdbc:
+          time_zone: UTC

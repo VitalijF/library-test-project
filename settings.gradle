@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'library-service'
+include 'library-service-app'
+include 'library-service-db'
+include 'library-service-bl'
+include 'library-service-rest'
+

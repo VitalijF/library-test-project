@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.vitaliif.library'
+
+dependencies {
+    api project(":library-service-bl")
+    implementation('org.springframework.boot:spring-boot-starter-web')
+
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
